@@ -1,0 +1,39 @@
+shooter maze game
+
+
+circle takeover.
+
+game is to dodge cirlces and shoot them. with your circle
+
+//first page welcomes use with instructions and allows them to press start game
+
+
+randomly generates 3 kinds of circles. (small max is 25, medium is 50 and large is 100)  
+
+can use wasd to move the circle 
+
+can
+
+
+
+to win there must be no enemy dots
+
+each team starts with 1 circle with 10 troops
+
+
+//circle class//
+This class will need to have the following 
+a health to set to either 25, 50, 100
+
+
+//player class is a circle which replaces the 
+
+//troops class
+
+
+
+//enemy class
+needs to spawn enemy
+
+game class
+needs to create multiple enemies at random locations with random speeds
