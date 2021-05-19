@@ -80,6 +80,7 @@ function animate(){
     gameObject.enemyList.forEach((enemy, index) => {
         gameObject.collisionDection(player, enemy, index, gameObject.enemyList);
         console.log(enemy.health)
+        enemy.radius = enemy.health
         if(enemy.health <= 0) {
             gameObject.enemyList.splice(index, 1);
         }
