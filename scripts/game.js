@@ -1,71 +1,91 @@
-
+//Class to store all the game informations
 class Game {
     constructor(){
         this._playerObject = new Player(); 
-        this._enemyList = [];
-        this._gameOver = false;
+        this._enemyList = []; // to store each enemy object
+        this._projectileList = []; // to store each enemy object
+        this._gameState = [];
+        this._score = 0;
+        
 
     }
-
+    //getter methods
     get playerObject(){
         return this._playerObject;
     }
 
     get enemyList(){
-        this._enemyList.forEach(enemy => {
-            return enemy;
-        })
+       return this._enemyList;
     }
 
-    //Functions
-    startMovement(keyPressed){
-        
-        if (keyPressed.key === 'w') {
-            this._playerObject.up = true;
-        }
+    get projectileList(){
+        return this._projectileList;
+     }
 
-        if (keyPressed.key === 's') {
-            this._playerObject.down = true;
-        }
-
-        if (keyPressed.key === 'a') {
-            this._playerObject.left = true;
-        }
-
-        if (keyPressed.key === 'd') {
-            this._playerObject.down = true;
-        }
-        this._playerObject.movePlayer(20)
-         ctx.clearRect(0, 0, canvas.width, canvas.height);
-         this.gameState()
+    get gameState(){
+        return this._gameState;
     }
 
-    stopMovement(keyReleased){
-        if (keyReleased.key === 'w') {
-            this._playerObject.up = false;
+    //function selects a returns either 25, 50 and 75 by generating a random number from 0 - 2 
+    getRadius(){
+        const randomNumber = Math.floor(Math.random() * 3);
+   
+        switch(randomNumber){
+            case 0:
+                return 25;
+                break;
+            case 1:
+                return 50;
+                break;
+            case 2:
+                return 75;
+                break;
         }
-
-        if (keyReleased.key === 's') {
-            this._playerObject.down = false;
-        }
-
-        if (keyReleased.key === 'a') {
-           this._playerObject.left = false;
-        }
-
-        if (keyReleased.key === 'd') {
-            this._playerObject.down = false;
-        }
-         ctx.clearRect(0, 0, canvas.width, canvas.height);
-         this.gameState();
     }
 
-    createGameWindow(){
-
+    spawnEnemies(){
+        while(this._enemyList.length < 5){
+            //gets radius for enemy
+            const radius = this.getRadius();
+            const health = radius;
+            const yPos = radius; //will set the mid position of circle to
+            const xPos = Math.floor(Math.random() * (canvas.width - radius) + radius);
+            const enemy = new Enemy(xPos, yPos, radius, health);
+            
+            this._enemyList.push(enemy);
+        }
     }
 
-    gameState(){
-        this._playerObject.draw()
+    displayEnemies(){
+        for( let i = 0; i < this._enemyList.length; i++){
+            this._enemyList[i].draw();
+            this._enemyList[i].move();
+        }
     }
 
+    displayProjectiles(){
+        for( let i = 0; i < this._projectileList.length; i++){
+            this._projectileList[i].draw();
+            this._projectileList[i].move()
+          
+        }
+    }
+
+    collisionDection(object1, object2, index, list){
+    
+        //saves difference between the 2 objects passed in center x coordinate
+        const xDist = object1.xMid - object2.xMid;
+
+        //does the same with y coordinate
+        const yDist = object1.yMid - object2.yMid; 
+        //works out hypotinues a^2 + b^2 = c^2 of triangle which gives ditance of objects center points
+        const dist =  Math.hypot(xDist, yDist); 
+        console.log(object1.health)
+       
+        if (dist < object1.radius + object2.radius) {
+            list.splice(index, 1)
+            object1.health = object1.health - object2.health;
+            
+        }
+    }
 }

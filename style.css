@@ -1,8 +1,55 @@
+html {
+    min-height: 100vh;
+    
+}
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 #canvas1 {
  background-color: black;
+}
+
+#canvas-bg {
+
+    position:fixed;
+ 
+    z-index: -2;
+}
+
+body.game-over {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+}
+
+main {
+    background-color: black;
+    color: aliceblue;
+    grid-row: 5 /span 3;
+    grid-column: 5 / span 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 5%;
+    opacity: 90%;
+}
+
+h1, a {
+    margin: 0 auto;
+}
+
+a {
+   background-color: rgb(101, 112, 121);
+   height: 25%;
+   width: 40%;
+   text-align: center;
+   padding-top: 4%;
+   text-decoration: none;
+   color: black;
+   border-radius: 50px;
 }

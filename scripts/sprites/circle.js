@@ -1,10 +1,11 @@
-//class for circle (will be used to create classes for the different sprites)
+//class for circle (parent class used to create classes for the different sprites)
 class Circle{
     //constructor method to allow me to set class properties (arguments allow me to set property values for each individul object when creating it)
     constructor(xMid, yMid, radius, color='black', health) {
         this._xMid = xMid; 
         this._yMid = yMid;
         this._radius = radius;
+        this._speed = 1;
         this._color = color;
         this._health = health;
     }
@@ -32,11 +33,10 @@ class Circle{
     }
 
     get health(){
-        return this._health
+        return this._health;
     }
     
     //setter methods for x and y midpoints
-
     set yMid(value){
         if (value < 1 || typeof value !== 'number'){
             console.log("Invalid Input");
@@ -53,6 +53,31 @@ class Circle{
         }
     }
 
+    set radius(value){
+        if (value < 0 || typeof value !== 'number'){
+            console.log("Invalid Input");
+        } else {
+            this._radius = value;
+        }
+    }
+
+    set speed(value){
+        if (value < 1 || typeof value !== 'number'){
+            console.log("Invalid Input");
+        } else {
+            this._speed = value;
+        }
+    }
+
+    set health(value){
+        if (typeof value !== 'number'){
+            console.log("Invalid Input");
+        } else {
+            this._health = value;
+        }
+    }
+
+
     //fuction to draw a circle
     draw(){
         ctx.beginPath(); //begin drawring
@@ -62,5 +87,4 @@ class Circle{
         ctx.fill();
         ctx.stroke();
     }
-
 }
