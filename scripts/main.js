@@ -63,7 +63,7 @@ function animate(){
     if (player.health <= 0) {
 
         cancelAnimationFrame(requestID);
-        awindow.location.href = "game-over.html";  
+        window.location.href = "game-over.html";  
     }
 
     gameObject.enemyList.forEach((enemy, index) => {
@@ -71,7 +71,7 @@ function animate(){
         gameObject.projectileList.forEach((projectile, pIndex) => {
             gameObject.collisionDection(enemy, projectile, pIndex, gameObject.projectileList);
             if(projectile.xMid > window.innerWidth - projectile.radius || projectile.xMid < projectile.radius){
-                projectileList.splice(pIndex, 1)
+                gameObject.projectileList.splice(pIndex, 1)
             }
         })
     })
@@ -81,7 +81,7 @@ function animate(){
         gameObject.collisionDection(player, enemy, index, gameObject.enemyList);
         console.log(enemy.health)
         enemy.radius = enemy.health
-        if(enemy.health <= 0) {
+        if(enemy.health <= 20) {
             gameObject.enemyList.splice(index, 1);
         }
     })
