@@ -6,9 +6,9 @@ class Game {
         this._projectileList = []; // to store each enemy object
         this._gameState = [];
         this._score = 0;
-        
-
+        this._numOfEnemies = 5;  
     }
+    
     //getter methods
     get playerObject(){
         return this._playerObject;
@@ -26,6 +26,32 @@ class Game {
         return this._gameState;
     }
 
+    get score(){
+        return this._score;
+    }
+
+    get numOfEnemies(){
+        return this._numOfEnemies;
+    }
+
+    set score(value) {
+        if(typeof value === 'number') {
+            this._score = value;
+        } else {
+            console.log(`Error. Value is not a number: ${value}`);
+        }
+    }
+
+    set numOfEnemies(value) {
+        if(typeof value === 'number') {
+            this._numOfEnemies = value;
+        } else {
+            console.log(`Error. Value is not a number: ${value}`);
+        }
+    }
+
+
+
     //function selects a returns either 25, 50 and 75 by generating a random number from 0 - 2 
     getRadius(){
         const randomNumber = Math.floor(Math.random() * 3);
@@ -40,11 +66,13 @@ class Game {
             case 2:
                 return 75;
                 break;
+            default:
+                console.log('error random number out of range');
         }
     }
 
     spawnEnemies(){
-        while(this._enemyList.length < 5){
+        while(this._enemyList.length < this._numOfEnemies){
             //gets radius for enemy
             const radius = this.getRadius();
             const health = radius;
@@ -66,7 +94,7 @@ class Game {
     displayProjectiles(){
         for( let i = 0; i < this._projectileList.length; i++){
             this._projectileList[i].draw();
-            this._projectileList[i].move()
+            this._projectileList[i].move();
           
         }
     }
@@ -88,4 +116,5 @@ class Game {
             
         }
     }
+
 }

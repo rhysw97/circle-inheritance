@@ -1,2 +1,1 @@
-remove enemies if their health is below 0;
-remove particles if they go off screen or they hit a enemy
+multiply speed by 2 when enemy is destoryed 

@@ -25,25 +25,23 @@ document.addEventListener('click', event => {
 
     //finds angle from players midpoint to the click 
     const angleToClick = Math.atan2(dist.y, dist.x)
-    console.log(angleToClick)
+
 
     //uses the Math libraries cosine and sine functions to find the velocity the projectile would need to reach the click
     const velocity = {
         x: Math. cos(angleToClick) * 4,
         y: Math.sin(angleToClick) * 4
     }
-    console.log(velocity);
+   
     const projectile = new Projectile(player.xMid, player.yMid, velocity);
             
     gameObject.projectileList.push(projectile);
 })
 
 
-function bounce(object1, object2){
-    object1.health = object1.health - object2.radius;
-    console.log(object1.health);
-    object2._xVel = 0 - object2.xVel;
-    object2._yVel = 0 - object2.yVel;
+
+function displayHealth() {
+    
 }
 
 function gameState() { 
@@ -76,13 +74,15 @@ function animate(){
         })
     })
 
-    
+    //cloops through the enemy list
     gameObject.enemyList.forEach((enemy, index) => {
         gameObject.collisionDection(player, enemy, index, gameObject.enemyList);
         console.log(enemy.health)
+        gameObject.score += enemy.radius - enemy.health
         enemy.radius = enemy.health
         if(enemy.health <= 20) {
             gameObject.enemyList.splice(index, 1);
+            gameObject.numOfEnemies = gameObject.numOfEnemies + 1;
         }
     })
    
@@ -91,14 +91,7 @@ function animate(){
    
 }
 
-function gameOver(){
-    //window.location.href = "game-over.html";      
-}
-
 animate();
-//need to make player shoot
-
-//function to store everything being drawn to the screen
 
 
 
