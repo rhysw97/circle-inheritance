@@ -6,7 +6,7 @@ class Game {
         this._projectileList = []; // to store each enemy object
         this._gameState = [];
         this._score = 0;
-        this._numOfEnemies = 5;  
+        this._maxNumOfEnemies = 5;  
     }
     
     //getter methods
@@ -30,8 +30,8 @@ class Game {
         return this._score;
     }
 
-    get numOfEnemies(){
-        return this._numOfEnemies;
+    get maxNumOfEnemies(){
+        return this._maxNumOfEnemies;
     }
 
     set score(value) {
@@ -42,9 +42,9 @@ class Game {
         }
     }
 
-    set numOfEnemies(value) {
+    set maxNumOfEnemies(value) {
         if(typeof value === 'number') {
-            this._numOfEnemies = value;
+            this._maxNumOfEnemies = value;
         } else {
             console.log(`Error. Value is not a number: ${value}`);
         }
@@ -71,10 +71,12 @@ class Game {
         }
     }
 
+    //function to create a new enemies
     spawnEnemies(){
-        while(this._enemyList.length < this._numOfEnemies){
+        //this loops while the number of enemies is 
+        while(this._enemyList.length < this._maxNumOfEnemies){
             //gets radius for enemy
-            const radius = this.getRadius();
+            const radius = this.getRadius(); 
             const health = radius;
             const yPos = radius; //will set the mid position of circle to
             const xPos = Math.floor(Math.random() * (canvas.width - radius) + radius);
@@ -84,6 +86,7 @@ class Game {
         }
     }
 
+    //function to display enemies within enemy list
     displayEnemies(){
         for( let i = 0; i < this._enemyList.length; i++){
             this._enemyList[i].draw();
@@ -91,6 +94,7 @@ class Game {
         }
     }
 
+    //function to display projectiles within projectile list
     displayProjectiles(){
         for( let i = 0; i < this._projectileList.length; i++){
             this._projectileList[i].draw();
@@ -108,13 +112,17 @@ class Game {
         const yDist = object1.yMid - object2.yMid; 
         //works out hypotinues a^2 + b^2 = c^2 of triangle which gives ditance of objects center points
         const dist =  Math.hypot(xDist, yDist); 
-        console.log(object1.health)
+        //console.log(object1.health)
        
+        //if the distance between the 2 circles mid points is less than their radius's added together 
         if (dist < object1.radius + object2.radius) {
-            list.splice(index, 1)
+            list.splice(index, 1) //item at index passed in is spliced from the list passed in
+            //decreases object1's health by object 2's health
             object1.health = object1.health - object2.health;
+            return true; //retun
             
         }
+        return false;
     }
 
 }

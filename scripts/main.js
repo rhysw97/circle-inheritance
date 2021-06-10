@@ -57,37 +57,48 @@ function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     gameState();
     player.move();
+
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: "+gameObject.score, 8, 20);
     
     if (player.health <= 0) {
 
         cancelAnimationFrame(requestID);
+        document.cookie = gameObject.score;
         window.location.href = "game-over.html";  
     }
 
     gameObject.enemyList.forEach((enemy, index) => {
      
         gameObject.projectileList.forEach((projectile, pIndex) => {
-            gameObject.collisionDection(enemy, projectile, pIndex, gameObject.projectileList);
+           const enemyHit = gameObject.collisionDection(enemy, projectile, pIndex, gameObject.projectileList);
             if(projectile.xMid > window.innerWidth - projectile.radius || projectile.xMid < projectile.radius){
                 gameObject.projectileList.splice(pIndex, 1)
+            }
+
+            if(enemyHit === true) {
+                gameObject.score = gameObject.score + enemy.radius - enemy.health;
             }
         })
     })
 
-    //cloops through the enemy list
+    //loops through the enemy list
     gameObject.enemyList.forEach((enemy, index) => {
+        //calls the collison dection method to check if player hit enemy
         gameObject.collisionDection(player, enemy, index, gameObject.enemyList);
         console.log(enemy.health)
         gameObject.score += enemy.radius - enemy.health
         enemy.radius = enemy.health
         if(enemy.health <= 20) {
+            gameObject.score = gameObject.score + 100;
             gameObject.enemyList.splice(index, 1);
             gameObject.numOfEnemies = gameObject.numOfEnemies + 1;
         }
     })
    
 
-   
+   console.log('Score: ' + gameObject.score)
    
 }
 

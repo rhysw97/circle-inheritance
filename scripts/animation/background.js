@@ -1,10 +1,16 @@
 //creates variable to allow me to select the canvas
 const canvas = document.getElementById('canvas-bg');
-const hexagonList = [];
+//set up canvas for 2d drawin
+const ctx = canvas.getContext("2d");
+
+//sets the canvas' width and height to match the window.
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const ctx = canvas.getContext("2d");
+//hexagon list to store the hexagons
+const hexagonList = [];
+//canvas setup
+
 ctx.fillStyle = "#222";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
