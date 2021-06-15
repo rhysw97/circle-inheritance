@@ -5,26 +5,23 @@ class Player extends Circle {
         this._keys = {}; //to store keys being pressed
     }
     get keys(){
-      
+    
         return this._keys;
     }
 
-  draw(){
-    ctx.beginPath(); //begin drawring
-    ctx.strokeStyle = this._color; //set the context's (the visual of the object) stroke color to the value within the objects strokeColor property 
-    ctx.fillStyle = this._color; // does the same as stroke color but with fill color
-    
-    ctx.arc(this._xMid, this._yMid, this._radius, 0, 2*Math.PI); //draws a circle at the
-    ctx.stroke();
-    ctx.fill();
-    ctx.closePath();
-    ctx.beginPath();
-    ctx.strokeStyle = 'black';
-    ctx.arc(this._xMid, this._yMid, this._radius - 20, 0, 2*Math.PI); 
-    ctx.closePath();
-   
-
-   
+    draw(){
+        ctx.beginPath(); //begin drawring
+        ctx.strokeStyle = this._color; //set the context's (the visual of the object) stroke color to the value within the objects strokeColor property 
+        ctx.fillStyle = this._color; // does the same as stroke color but with fill color
+        
+        ctx.arc(this._xMid, this._yMid, this._radius, 0, 2*Math.PI); //draws a circle at the
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.strokeStyle = 'black';
+        ctx.arc(this._xMid, this._yMid, this._radius - 20, 0, 2*Math.PI); 
+        ctx.closePath();
     }
     
 
