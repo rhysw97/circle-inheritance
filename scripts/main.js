@@ -97,13 +97,7 @@ function animate(){
             gameObject.numOfEnemies = gameObject.numOfEnemies + 1;
         }
     })
-
-
     console.log('Score: ' + gameObject.score)
 
 }
-
 animate();
-
-
-

@@ -2,7 +2,6 @@
 class Enemy extends Circle  {
     constructor(xMid, yMid, radius, health) {
         super(xMid, yMid, radius, 'red', health);
-      
         this._xVel = 3;
         this._yVel = 3;
         
@@ -16,7 +15,7 @@ class Enemy extends Circle  {
     get yVel(){
         return this._yVel;
     }
-   
+
 
     set xVel(value){
         this._xVel = value;
@@ -26,7 +25,7 @@ class Enemy extends Circle  {
         this._yVel = value;
     }
 
-  
+
     //polymorphism to override circles draw class
     draw(){
         this._health = this._radius;
@@ -50,7 +49,7 @@ class Enemy extends Circle  {
         if (this._yMid - this._radius < 0){
             this._yVel = 0 - this._yVel;
         }
-      
+    
         this._xMid += this._xVel;
         this._yMid += this._yVel;
     }

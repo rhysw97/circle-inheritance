@@ -15,12 +15,12 @@ class Game {
     }
 
     get enemyList(){
-       return this._enemyList;
+        return this._enemyList;
     }
 
     get projectileList(){
         return this._projectileList;
-     }
+    }
 
     get gameState(){
         return this._gameState;
@@ -55,7 +55,7 @@ class Game {
     //function selects a returns either 25, 50 and 75 by generating a random number from 0 - 2 
     getRadius(){
         const randomNumber = Math.floor(Math.random() * 3);
-   
+    
         switch(randomNumber){
             case 0:
                 return 25;
@@ -99,7 +99,7 @@ class Game {
         for( let i = 0; i < this._projectileList.length; i++){
             this._projectileList[i].draw();
             this._projectileList[i].move();
-          
+        
         }
     }
 
@@ -113,7 +113,7 @@ class Game {
         //works out hypotinues a^2 + b^2 = c^2 of triangle which gives ditance of objects center points
         const dist =  Math.hypot(xDist, yDist); 
         //console.log(object1.health)
-        
+
         //if the distance between the 2 circles mid points is less than their radius's added together 
         if (dist < object1.radius + object2.radius) {
             list.splice(index, 1) //item at index passed in is spliced from the list passed in
