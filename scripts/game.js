@@ -113,7 +113,7 @@ class Game {
         //works out hypotinues a^2 + b^2 = c^2 of triangle which gives ditance of objects center points
         const dist =  Math.hypot(xDist, yDist); 
         //console.log(object1.health)
-       
+        
         //if the distance between the 2 circles mid points is less than their radius's added together 
         if (dist < object1.radius + object2.radius) {
             list.splice(index, 1) //item at index passed in is spliced from the list passed in

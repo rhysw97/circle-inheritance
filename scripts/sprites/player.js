@@ -27,17 +27,7 @@ class Player extends Circle {
    
     }
     
-    rotateRect() {
-        ctx.beginPath();
-        ctx.translate(x, y);
-        ctx.rotate(rad);
-        ctx.translate(-x, -y);
-        ctx.fillStyle = 'red';
-        ctx.rect(this._xMid, this._yMid, 20, 20);
-       
-        ctx.fill();
-        ctx.stroke();
-    }
+
     
     move() {
         //if w is being pressed 

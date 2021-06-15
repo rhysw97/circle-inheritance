@@ -32,13 +32,11 @@ document.addEventListener('click', event => {
         x: Math. cos(angleToClick) * 4,
         y: Math.sin(angleToClick) * 4
     }
-   
+    //creates new projectile object
     const projectile = new Projectile(player.xMid, player.yMid, velocity);
-            
+    //pushes projectile object to the beginning of the list   
     gameObject.projectileList.push(projectile);
 })
-
-
 
 function displayHealth() {
     
@@ -52,9 +50,11 @@ function gameState() {
 
 //gameLoop
 function animate(){
+    //gets animation frame
     const requestID = requestAnimationFrame(animate);
-    gameObject.spawnEnemies();
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    gameObject.spawnEnemies(); //calls gameObjects spawn enemies method 
+    ctx.clearRect(0, 0, canvas.width, canvas.height); //clears the screen
+    
     gameState();
     player.move();
 
@@ -64,15 +64,16 @@ function animate(){
     
     if (player.health <= 0) {
 
-        cancelAnimationFrame(requestID);
-        document.cookie = gameObject.score;
-        window.location.href = "game-over.html";  
+        cancelAnimationFrame(requestID); //stops animation
+        document.cookie = gameObject.score; //stores users score into cookie to display on game over page
+        window.location.href = "game-over.html"; //loads game over window 
     }
-
+    //loops through each enemy in the enemylist
     gameObject.enemyList.forEach((enemy, index) => {
-     
+     //loops through all projectiles in projectile list
         gameObject.projectileList.forEach((projectile, pIndex) => {
-           const enemyHit = gameObject.collisionDection(enemy, projectile, pIndex, gameObject.projectileList);
+            //uses collision detection function to check if any enemy has colided with any projectile and saves whether it has in enemyHit.
+            const enemyHit = gameObject.collisionDection(enemy, projectile, pIndex, gameObject.projectileList);
             if(projectile.xMid > window.innerWidth - projectile.radius || projectile.xMid < projectile.radius){
                 gameObject.projectileList.splice(pIndex, 1)
             }
@@ -96,10 +97,10 @@ function animate(){
             gameObject.numOfEnemies = gameObject.numOfEnemies + 1;
         }
     })
-   
 
-   console.log('Score: ' + gameObject.score)
-   
+
+    console.log('Score: ' + gameObject.score)
+
 }
 
 animate();

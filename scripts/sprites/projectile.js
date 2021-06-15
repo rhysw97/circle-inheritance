@@ -1,6 +1,6 @@
 class Projectile extends Circle {
     constructor (xMid, yMid, velocity) {
-       
+    
         super(xMid, yMid, 10, 'grey', 5);
         this.velocity = velocity;
         

@@ -25,15 +25,13 @@ function animate() {
         hexagonList[i].draw()
         
         hexagonList[i]._colour = hexagonList[i].colour + 5;
-       
     }
 
     setTimeout(animate, 200);
-   
 
-  
-   
 }
+
+//class for hexagon
 class Hexagon{
 
     constructor(x, y, r) {
@@ -63,19 +61,19 @@ class Hexagon{
         if (value === 'number'){
             this._colour = value;
         } else {
-           console.log('Colour value must be a number')
+        console.log('Colour value must be a number')
             
-      
+    
         }
     }
 
 
     draw() {
-       
+    
         const a =  2 * Math.PI / 6;
         
         ctx.beginPath()
-       
+    
         for(let i = 0; i < 6; i++) {
             ctx.strokeStyle = `hsl(${this._colour}, 100%, 50%)`
             
@@ -83,7 +81,7 @@ class Hexagon{
         }
         ctx.stroke();
         ctx.closePath();
-      
+    
     }
 }
 
@@ -96,7 +94,7 @@ function createRow(x, y, r) {
         const hexagon = new Hexagon(x, y, r)
         hexagonList.push(hexagon);
         const a =  2 * Math.PI / 6;
-     
+    
         if (i % 2 === 0) {
             x += r + r * Math.cos(a);
             y += r * Math.sin(a);
@@ -107,7 +105,7 @@ function createRow(x, y, r) {
         i++
             
     }
-       
+    
     
 }
 let y = 0;
